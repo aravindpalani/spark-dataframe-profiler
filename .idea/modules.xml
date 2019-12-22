@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/profiler-build.iml" filepath="$PROJECT_DIR$/.idea/modules/profiler-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spark-dataframe-profiler.iml" filepath="$PROJECT_DIR$/.idea/modules/spark-dataframe-profiler.iml" />
+    </modules>
+  </component>
+</project>
