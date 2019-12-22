@@ -1,10 +1,11 @@
-package com.github.aravindpalani
+package com.github.aravindpalani.spark.profiler.core
 
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.functions.{col, count, desc}
 
-object pattern {
-  def showPattern(s: DataFrame): Array[DataFrame] = {
+object values {
+
+  def showValues(s: DataFrame): Array[DataFrame] = {
     /*column name validation:
     1) Non alphanumeric will be replaced by '_'*/
     var df = s
@@ -13,8 +14,7 @@ object pattern {
     }
     val cnt = df.count()
     df.columns.map(column => {
-      df.selectExpr(s"regexp_replace(regexp_replace(regexp_replace($column,'[0-9]','9'),'[a-z]','x'),'[A-Z]','X') as $column")
-        .na.fill("NULL")
+      df.na.fill("NULL")
         .groupBy(col(s"$column"))
         .agg(count(s"$column").alias("cnt"))
         .orderBy(desc("cnt"))
