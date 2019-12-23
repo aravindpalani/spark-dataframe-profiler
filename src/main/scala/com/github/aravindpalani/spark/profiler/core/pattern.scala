@@ -27,7 +27,7 @@ object pattern {
     */
 
     df.columns.map(column => {
-      df.selectExpr(s"regexp_replace(regexp_replace(regexp_replace(regexp_replace($column,'[0-9]','9'),'[a-z]','x'),'[A-Z]','X'),'[^a-zA-Z0-9/s]','#'), as $column")
+      df.selectExpr(s"regexp_replace(regexp_replace(regexp_replace($column,'[0-9]','9'),'[a-z]','x'),'[A-Z]','X') as $column")
         .na.fill("NULL")
         .groupBy(col(s"$column"))
         .agg(count(s"$column").alias("cnt"))
