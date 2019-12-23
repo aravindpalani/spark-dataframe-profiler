@@ -2,7 +2,7 @@
 
 A simple tool to determine column level profiling.
 
-###### Run the spark shell with profiler jar.
+###### Run the spark shell with profiler jar
 
 `./spark-shell --jars ../profiler_2.11-0.1.jar`
 
