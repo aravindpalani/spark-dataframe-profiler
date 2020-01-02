@@ -28,10 +28,10 @@ object values {
     */
     df.columns.map(column => {
       df.na.fill("NULL")
-        .groupBy(col(s"$column"))
-        .agg(count(s"$column").alias("cnt"))
+        .groupBy(col(s"`$column`"))
+        .agg(count(s"`$column`").alias("cnt"))
         .orderBy(desc("cnt"))
-        .selectExpr(s"$column", s" case when $column = 'NULL' then 0 else length($column) end as length", "cnt as frequency", s"round((cnt/$cnt)*100,2) as percentage")
+        .selectExpr(s"`$column`", s" case when `$column` = 'NULL' then 0 else length(`$column`) end as length", "cnt as frequency", s"round((cnt/$cnt)*100,2) as percentage")
     })
   }
 }
