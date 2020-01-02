@@ -7,18 +7,13 @@ object values {
 
   def showValues(s: DataFrame): Array[DataFrame] = {
     /*
-    * column name validation:
-    * Non alphanumeric will be replaced by '_'
+    * Non alphanumeric column names handled using ` character
     */
-    var df = s
-    for (col <- s.columns) {
-      df = df.withColumnRenamed(col, col.replaceAll("[^a-zA-Z0-9]", "_"))
-    }
     /*
     * Total number of records (cnt):
     * Required for calculating precentage
     */
-    val cnt = df.count()
+    val cnt = s.count()
     /*
     * Each resultant dataframe contains these attributes:
     *   - attribute Name (Values)
@@ -26,8 +21,8 @@ object values {
     *   - frequency
     *   - percentage
     */
-    df.columns.map(column => {
-      df.na.fill("NULL")
+    s.columns.map(column => {
+      s.na.fill("NULL")
         .groupBy(col(s"`$column`"))
         .agg(count(s"`$column`").alias("cnt"))
         .orderBy(desc("cnt"))
